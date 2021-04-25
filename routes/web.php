@@ -16,3 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+//Route::get('/post', [\App\Http\Controllers\Blog\PostController::class, 'store'])->name('post');
+Route::group(['prefix' => 'post'], function () {
+    Route::get('/create', [\App\Http\Controllers\Blog\PostController::class, 'store']);
+    Route::get('/delete/{id}', [\App\Http\Controllers\Blog\PostController::class, 'destroy']);
+});
